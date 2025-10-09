@@ -1,53 +1,78 @@
-# Task Tracker
+# Task Tracker CLI
 
-A simple command-line task tracker written in Python.  
-Allows you to add tasks with a default status ("assigned") and is designed to be extended with more features like changing status, listing, and deleting tasks.
+**Task Tracker** is a simple Python console task manager that allows you to add, delete, and edit tasks while tracking their status. Perfect for personal use or as a learning project.
 
 ---
 
-## Installation
+## 💡 Features
+- Add tasks with a title (default status: `assigned`)
+- Delete tasks by number
+- Change task status (`assigned`, `in-progress`, `done`) or title
+- Clear all tasks with automatic backup
+- Auto-save after every action
+- Sort tasks by status (`in-progress` → `assigned` → `done`)
+- Colorful console output using `colorama`
+- Load saved tasks from a file
 
-Clone the repository:
+---
 
+## ⚙️ Installation
+
+1. Clone the repository:
 ```bash
-git clone https://github.com/Timka08/Task-Tracker.git
-cd Task-Tracker
+git clone <your-repo-url>
+cd <your-repo-folder>
 ```
 
-Make sure you have Python installed (3.8+ recommended).
+2. Install dependencies:
+```bash
+pip install colorama
+```
 
----
-
-## Running
-
-Run the application:
-
+3. Run the application:
 ```bash
 python main.py
 ```
 
 ---
 
-## Commands
+## 📑 Commands
+| Command | Description |
+|---------|------------|
+| `add <title>` | Add a new task (default status: `assigned`) |
+| `delete <task_number>` | Delete a task by its number |
+| `list` | List all tasks |
+| `change <num> status <new_status>` | Change the status of a task |
+| `change <num> title <new_title>` | Change the title of a task |
+| `clear` | Clear all tasks (backup is saved automatically) |
+| `load` | Load tasks from the file |
+| `help` | Show available commands |
+| `exit` | Exit the application |
 
-- `add <task_name>` - Adds a new task with default status `"assigned"`  
-- `list` - List all tasks (to be implemented)  
-- `change <task_name> <new_status>` - Change status of a task (to be implemented)  
-- `delete <task_name>` - Delete a task (to be implemented)  
-- `exit` - Exit the program  
+---
 
-### Example:
+## 📦 Example
 
 ```
-add Buy milk
-add Finish homework
+> add Finish homework
+Task 'Finish homework' added
+1. Finish homework - assigned
+
+> change 1 status in-progress
+Task status changed from 'assigned' to 'in-progress'
+1. Finish homework - in-progress
 ```
 
 ---
 
-## Status
+## 💾 Files
 
-- Basic task adding works ✅  
-- Multi-word task names supported ✅  
-- Other commands planned (change, delete, list)
+- `main.py` — main script
+- `tasks.json` — file to store tasks (created automatically)
+- `tasks.json.bak` — backup file when clearing all tasks
+
+---
+
+## 🛠️ License
+MIT License
 

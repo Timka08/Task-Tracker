@@ -12,7 +12,8 @@ class TaskTracker:
         'list': self.list_tasks,
         'change': self.change,
         'clear': self.clear_tasks,
-        'load': self.load_from_file
+        'load': self.load_from_file,
+        'help': self.help
         }
         self.valid_statuses = ['assigned','in-progress','done']
     
