@@ -55,7 +55,7 @@ class TaskTracker:
         order = {'assigned': 1, 'in-progress': 0, 'done': 2}
         self.tasks.sort(key=lambda t: order[t[-1]])
         
-    def list_tasks(self):
+    def list_tasks(self, *args):
         self.sort_by_status()
         self.auto_save()
         if not self.tasks:
@@ -67,9 +67,19 @@ class TaskTracker:
             "in-progress": Fore.YELLOW,
             "done": Fore.GREEN
             }
-        for i, task in enumerate(self.tasks, start=1):
-            status_colored = color_map.get(task[1], Fore.WHITE) + task[1] + Style.RESET_ALL
-            print(f"{i}. {task[0]} - {status_colored}")
+        if len(args) == 1:
+            if args[0] in self.valid_statuses:
+                filtered_tasks = [task for task in self.tasks if task[1] == args[0]]
+                if not filtered_tasks:
+                    print(f"No tasks with status '{args[0]}' found.")
+                    return
+                for i, task in enumerate(filtered_tasks, start=1):
+                    status_colored = color_map.get(task[1], Fore.WHITE) + task[1] + Style.RESET_ALL
+                    print(f"{i}. {task[0]} - {status_colored}")
+        else:
+            for i, task in enumerate(self.tasks, start=1):
+                status_colored = color_map.get(task[1], Fore.WHITE) + task[1] + Style.RESET_ALL
+                print(f"{i}. {task[0]} - {status_colored}")
     
     
 
