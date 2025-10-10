@@ -20,7 +20,7 @@
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+gh repo clone Timka08/Task-Tracker
 cd <your-repo-folder>
 ```
 
