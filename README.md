@@ -1,25 +1,25 @@
 # Task Tracker CLI
 
-Простой консольный трекер задач без лишнего мусора.
-Хранит данные в `tasks.json`, работает без библиотек, только стандартный Python.
+A simple console task tracker with no unnecessary clutter.
+Stores data in `tasks.json`, works with standard Python only.
 
-## Возможности
+## Features
 
-* Добавление задач
-* Обновление описания
-* Удаление
-* Изменение статуса:
+* Add tasks
+* Update task descriptions
+* Delete tasks
+* Change status:
 
   * `todo`
   * `in-progress`
   * `done`
-* Просмотр всех задач или только выбранного статуса
-* Автоматическое создание `tasks.json`
-* Безопасная запись (atomic write) — файл не ломается даже при сбоях
+* View all tasks or filter by status
+* Automatic creation of `tasks.json`
+* Safe writing (atomic write) — file won’t break even on failures
 
-## Формат хранения задач (tasks.json)
+##  Task Storage Format (`tasks.json`)
 
-Каждая задача выглядит так:
+Each task looks like this:
 
 ```json
 {
@@ -31,57 +31,57 @@
 }
 ```
 
-## Установка
+## Installation
 
-0. Убедись, что стоит Python 3.
-1. Склонируй или скопируй файлы куда хочешь.
-2. Готово — ничего больше не нужно.
+0. Make sure you have Python 3 installed.
+1. Clone or copy the files to your desired directory.
+2. Done — no additional setup required.
 
-## Запуск
-
-```
-python tracker.py <команда> [аргументы]
-```
-
-## Команды
-
-### Добавить задачу
+## Running
 
 ```
-python tracker.py add "купить макароны"
+python tracker.py <command> [arguments]
 ```
 
-### Обновить описание
+## Commands
+
+### Add a new task
 
 ```
-python tracker.py update 3 "купить макароны и сыр"
+python tracker.py add "buy pasta"
 ```
 
-### Удалить задачу
+### Update task description
+
+```
+python tracker.py update 3 "buy pasta and cheese"
+```
+
+### Delete a task
 
 ```
 python tracker.py delete 2
 ```
 
-### Отметить как in-progress
+### Mark a task as in-progress
 
 ```
 python tracker.py mark-in-progress 1
 ```
 
-### Отметить как done
+### Mark a task as done
 
 ```
 python tracker.py mark-done 1
 ```
 
-### Посмотреть все задачи
+### List all tasks
 
 ```
 python tracker.py list
 ```
 
-### Посмотреть только задачи определённого статуса
+### List tasks by status
 
 ```
 python tracker.py list todo
@@ -89,29 +89,29 @@ python tracker.py list in-progress
 python tracker.py list done
 ```
 
-### Помощь
+### Help
 
 ```
 python tracker.py help
 ```
 
-## Как это работает внутри
+## How It Works
 
-* Все команды идут через `main()`, который парсит аргументы.
-* Все задачи хранятся в JSON-файле.
-* Запись идёт через `atomic_write()` → временный файл → безопасная замена.
-* Все статусы валидируются.
-* Система сама назначает ID.
-* Время пишется в UTC в ISO-формате.
+* All commands go through `main()`, which parses the arguments.
+* Tasks are stored in a JSON file.
+* Writing is done via `atomic_write()` → temporary file → safe replacement.
+* Statuses are validated automatically.
+* IDs are assigned automatically.
+* Timestamps are stored in UTC ISO format.
 
-## Обработка ошибок
+## Error Handling
 
-* Неправильные команды → вывод ошибки.
-* Неправильный статус → тоже ошибка.
-* Пустое описание → ошибка.
-* Ломаный JSON игнорируется (файл будет перезаписан нормально при следующей операции).
+* Invalid commands → error message.
+* Invalid status → error message.
+* Empty description → error message.
+* Corrupted JSON is ignored (file will be safely overwritten on next operation).
 
-## Пример работы
+## Example
 
 ```
 > python tracker.py add "Buy groceries"
